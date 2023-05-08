@@ -32,8 +32,8 @@ RUN useradd -m -c "$SSH_USER" -d /home/$SSH_USER -s /bin/bash $SSH_USER \
 
 COPY config/ec2-sshd_config /etc/ssh/sshd_config
 
-# RUN sed -i 's/#PermitRootLogin prohibit-password/PermitRootLogin no/g' /etc/ssh/sshd_config \
-#     && sed -i 's/#PasswordAuthentication yes/PasswordAuthentication yes/g' /etc/ssh/sshd_config \
+RUN sed -i 's/#PermitRootLogin yes/PermitRootLogin no/g' /etc/ssh/sshd_config \
+    && sed -i 's/PasswordAuthentication no/PasswordAuthentication yes/g' /etc/ssh/sshd_config \
 #     && sed -i 's/#UsePAM no/UsePAM yes/g' /etc/ssh/sshd_config \
 #     # 호스트 키 파일을 사용하도록 SSH 설정 변경
 #     # && sed -i 's/#HostKey \/etc\/ssh\/ssh_host_rsa_key/HostKey \/etc\/ssh\/ssh_host_rsa_key/g' /etc/ssh/sshd_config \
@@ -41,7 +41,7 @@ COPY config/ec2-sshd_config /etc/ssh/sshd_config
 #     # && sed -i 's/#HostKey \/etc\/ssh\/ssh_host_ed25519_key/HostKey \/etc\/ssh\/ssh_host_ed25519_key/g' /etc/ssh/sshd_config \
 #     && echo "AuthenticationMethods publickey,password" >> /etc/ssh/sshd_config \
 #     && echo "PubkeyAcceptedAlgorithms +ssh-rsa" >> /etc/ssh/sshd_config \
-#     && mkdir /run/sshd
+    && mkdir /run/sshd
 
 CMD ["/usr/sbin/sshd", "-D"]
 

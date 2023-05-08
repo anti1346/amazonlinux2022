@@ -29,3 +29,11 @@ docker inspect --format='{{range.NetworkSettings.Networks}}{{.IPAddress}}{{end}}
 ```
 ssh ec2-user@localhost -p 2222
 ```
+```
+ssh -o "StrictHostKeyChecking=no" ec2-user@localhost -p 2222
+```
+
+##### ssh 호스트 키 삭제
+```
+ssh-keygen -R "[localhost]:2222"
+```
