@@ -1,15 +1,15 @@
 version: '3.9'
 services:
 
-  ssh-server:
+  amzn-sshd:
     build:
       context: .
       args:
         SSH_USER: ${SSH_USER}
         SSH_PASSWORD: ${SSH_PASSWORD}
     image: anti1346/amazonlinux2022:sshd
-    container_name: ssh-server
-    hostname: ssh-server
+    container_name: amzn-sshd
+    hostname: amzn-sshd
     command: /usr/sbin/sshd -D
     ports:
       - 2222:22
